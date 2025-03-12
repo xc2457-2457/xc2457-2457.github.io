@@ -16,7 +16,7 @@ function setup() {
 
 function generateTerrain(){
   let xoff = frameCount*0.03;
-  let peeky = height
+  let peeky = height;
   let peekx;
   for (let x = 0; x < width; x++) {
     let y = noise(xoff) * height; //noise(xoff)=0-1 height increase through noise value decrease
@@ -32,7 +32,7 @@ function generateTerrain(){
   drawflag(peekx,peeky) 
 }
 function drawflag(x,y){
-  circle(x,y,30)
+  circle(x,y,30);
   
 }
 
