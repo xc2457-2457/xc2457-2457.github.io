@@ -1,7 +1,11 @@
-let totalheight = 0;
+//perlin noise
+//Xinchen Yao
+//Mar 4 2025
+
+
 let rectWidth =30;
 let start = 0;
-let average = 0;
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
@@ -12,34 +16,44 @@ function setup() {
 
 function generateTerrain(){
   let xoff = start;
-  let peaky = height
+  let peaky = height;
   let peakx;
-  let rectnum = width/rectWidth;
-  for (let x = 0; x < width; x++) {
+  let rectnum = width/rectWidth;//amount of rect
+  let totalheight = 0;
+  let average = 0;
+  for (let x = 0; x < width; x+= rectWidth) {
     let y = noise(xoff) * height; //noise(xoff)=0-1 height increase through noise value decrease
     
     xoff += 0.01;
     
     rect(x, y, rectWidth, height - y);
     if(y<peaky){//find the highest point
-      peaky = y
-      peakx = x
+      peaky = y;
+      peakx = x;
     }
     
-    let high = height-y;
-    totalheight += high;
+    
     
 
-    start += 0.00003; 
+    start += 0.00003;//speed
+    
+    totalheight +=y;//add all the height of rect
+    average = totalheight/rectnum;//total/amount = average
+    
+    
     
   }
-  average = totalheight/rectnum;
-  drawflag(peakx,peaky) 
-  averageh();
+  
+  
+  
+  drawflag(peakx,peaky);
+  averageh(average);
+  
 }
 function drawflag(x,y){
   fill(80,90,170);
-  circle(x,y,30)
+  circle(x,y-100,50);
+  rect(x-15,y-100,30,100);
   
 }
 
@@ -48,30 +62,32 @@ function drawflag(x,y){
 
 function draw() {
   background(220);
-  noStroke()
+  noStroke();
   fill(100,200,200);
   generateTerrain();
-  
-  
-  
-  
-}
-function keyPressed(){
-  if(key === 'a'){
-    rectWidth = rectWidth - 5;
+  if(keyIsDown(LEFT_ARROW)){//change the width of rect
+    rectWidth = rectWidth - 0.1;
     
   }
-  if(key === 'd'){
-    rectWidth = rectWidth + 5;
+  if(keyIsDown(RIGHT_ARROW)){
+    rectWidth = rectWidth + 0.1;
     
   }
   if(rectWidth<=0){
-    rectWidth = 1;
+    rectWidth = 0.1;
   }
+  
+  
+  
+  
+}
+
+
+function averageh(yvalue){
+  fill(200,30,30);
+  rect(0,yvalue,width,10);
 
 }
 
-function averageh(){
-  fill(100,100,255);
-  line(0,average,width,average)
-}
+
+
