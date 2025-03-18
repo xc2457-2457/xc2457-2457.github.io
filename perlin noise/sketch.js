@@ -1,9 +1,3 @@
-// Project Title
-// Gary Wang
-// March, 4th, 2025
-//
-//Starter Code for our
-//Terrain Generation Project
 let totalheight = 0;
 let rectWidth =30;
 let start = 0;
@@ -21,7 +15,7 @@ function generateTerrain(){
   let peaky = height
   let peakx;
   let rectnum = width/rectWidth;
-  for (let x = 0; x < width; x+= rectWidth) {
+  for (let x = 0; x < width; x++) {
     let y = noise(xoff) * height; //noise(xoff)=0-1 height increase through noise value decrease
     
     xoff += 0.01;
@@ -36,10 +30,9 @@ function generateTerrain(){
     totalheight += high;
     
 
-     
+    start += 0.00003; 
     
   }
-  start += 0.01;
   average = totalheight/rectnum;
   drawflag(peakx,peaky) 
   averageh();
@@ -80,7 +73,5 @@ function keyPressed(){
 
 function averageh(){
   fill(100,100,255);
-  line(0,average,width,average);
-
+  line(0,average,width,average)
 }
-
