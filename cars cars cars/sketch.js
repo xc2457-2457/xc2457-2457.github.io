@@ -41,11 +41,11 @@ function drawRoad(){
 }
 class car{
   constructor(x,y){
-    this.x = x; this.y = y; this.speed = random(2,5);
+    this.x = x; this.y = y; this.speed = random(2,5);this.color = 150;
 
   }
   display(){
-    fill(150);
+    fill(this.color);
     rect(this.x,this.y,20,40);
 
   }
@@ -53,7 +53,10 @@ class car{
     for(let w = 0;w<width;w+=this.speed){
       
     }
-    this.x += this.speed();
+    this.x += this.speed;
+    if(this.x > width){
+      
+    }
   } 
 
  
