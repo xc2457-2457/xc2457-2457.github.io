@@ -66,7 +66,7 @@ function mousePressed(){
 
 function keyPressed(){
   if(key === " "){//if space pressed
-    pause = 120// set pause = 120
+    pause = 120;// set pause = 120
   }
 }
 
@@ -120,10 +120,10 @@ class car{
       fill(this.color);
       rect(this.x,this.y,60,30);
       fill(150);
-      rect(this.x+40,this.y+30,15,10)
-      rect(this.x,this.y+30,15,10)
-      rect(this.x+40,this.y-10,15,10)
-      rect(this.x,this.y-10,15,10)
+      rect(this.x+40,this.y+30,15,10);
+      rect(this.x,this.y+30,15,10);
+      rect(this.x+40,this.y-10,15,10);
+      rect(this.x,this.y-10,15,10);
 
     }
     
@@ -134,15 +134,15 @@ class car{
     if( this.direction === 1){//toward east
       this.x += this.speed;//move by this.speed
       if(this.x > width){//go to 0 if cars touch width
-      this.x = 0
-      this.y = random(botlane);//go to new lane at bottom
+        this.x = 0;
+        this.y = random(botlane);//go to new lane at bottom
       }    
     }
     if( this.direction === 0){//same as above
       this.x -= this.speed;
       if(this.x < 0){
-      this.x = width;
-      this.y = random(toplane);
+        this.x = width;
+        this.y = random(toplane);
 
       }
     }
@@ -156,23 +156,23 @@ class car{
   }
 
   speedup(){
-    this.speed += 0.2//speed up
+    this.speed += 0.2;//speed up
 
   }
 
   speeddown(){
-    this.speed -=0.2//speed up
+    this.speed -=0.2;//speed up
 
   }
   action(){
     if (int(random(100))===1){//1% chance to change the speed and color
-      this.speedup()
+      this.speedup();
     }
     if (int(random(100))===1){
-      this.speeddown()
+      this.speeddown();
     }
     if (int(random(100))===1){
-      this.changecolor()
+      this.changecolor();
     }
     this.display();
   }
