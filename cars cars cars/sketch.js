@@ -37,6 +37,27 @@ function setup() {
   
 }
 
+function mousePressed(){
+  let direction
+  let x
+  let y
+  let type
+  if(keyIsDown(SHIFT)){
+    direction = 0 
+    x = width
+    y = random(toplane)
+    type = int(random(0,2))
+  }
+  else{
+    direction = 1
+    x = 0
+    y = random(botlane)
+    type = int(random(0,2))
+  }
+  Cars.push(new car(type,x,y,direction));
+
+}
+
 
 function draw() {
   background(220);
