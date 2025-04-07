@@ -6,11 +6,32 @@
 // - describe what you did to take this project "above and beyond"
 
 let Cars = [];
+let botlane = [];
+let toplane = []
+
+
 let rectwidth = 45;
 function setup() {
+  
   createCanvas(windowWidth, windowHeight);
-  for(let i = 0; i<=5;i++){
-    Cars.push(new car(0,height/2));
+  botlane = [height/2+height/16,
+              height/2+height/8]
+  toplane = [height/2-height/16,
+    height/2-height/8]
+
+  
+  for(let i = 0; i<=10;i++){
+    let thelane = random(botlane);
+    
+    let type=int(random(0,2));
+    Cars.push(new car(type,random(width),thelane,1));
+
+  }
+  for(let i = 0; i<=10;i++){
+    let thelane = random(toplane);
+    
+    let type=int(random(0,2));
+    Cars.push(new car(type,random(width),thelane,0));
 
   }
   
@@ -21,8 +42,10 @@ function draw() {
   background(220);
   drawRoad();
   for(let car of Cars){
+
     car.display();
     car.move();
+    car.action();
 
   }
   
@@ -40,24 +63,77 @@ function drawRoad(){
   }
 }
 class car{
-  constructor(x,y){
-    this.x = x; this.y = y; this.speed = random(2,5);this.color = 150;
+  constructor(type,x,y,direction){
+    this.x = x; this.y = y; this.speed = random(2,5);this.type = type; this.direction = direction
+    this.color = color(random(255),random(255),random(255))
 
   }
   display(){
-    fill(this.color);
-    rect(this.x,this.y,20,40);
+    if(this.type === 0){
+      fill(this.color);
+      rect(this.x,this.y,40,40);
+      rect(this.x+40,this.y,20,40);
+
+    }
+    else if(this.type === 1){
+      fill(this.color);
+      rect(this.x,this.y,60,30);
+      fill(150);
+      rect(this.x+40,this.y+30,15,10)
+      rect(this.x,this.y+30,15,10)
+      rect(this.x+40,this.y-10,15,10)
+      rect(this.x,this.y-10,15,10)
+
+    }
+    
+    
 
   }
   move(){
-    for(let w = 0;w<width;w+=this.speed){
-      
+    if( this.direction === 1){
+      this.x += this.speed;
+      if(this.x > width){
+      this.x = 0
+      this.y = random(botlane);
+      }    
     }
-    this.x += this.speed;
-    if(this.x > width){
-      
+    if( this.direction === 0){
+      this.x -= this.speed;
+      if(this.x < 0){
+      this.x = width;
+      this.y = random(toplane);
+
+      }
     }
-  } 
+  }
+  
+  changecolor(){
+    this.color = color(random(255),random(255),random(255))
+
+  }
+
+  speedup(){
+    this.speed += 0.2
+
+  }
+
+  speeddown(){
+    this.speed -=0.2
+
+  }
+  action(){
+    if (random(1)<0.01){
+      this.speedup()
+    }
+    if (random(1)<0.01){
+      this.speeddown()
+    }
+    if (random(1)<0.01){
+      this.changecolor()
+    }
+    this.display();
+  }
+
 
  
 }
