@@ -5,6 +5,12 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
+
+// 19 Image Manipulation
+// Priyansh Jhanji
+// 9th April 2025
+
+
 let pilot; // p5.Image     .width . height
 
 
@@ -65,4 +71,5 @@ function boostImage(){
     setPixelColor(i, r, g, b);
   }
 }
+
 
