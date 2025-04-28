@@ -34,6 +34,10 @@ function renderGrid() {
       square(x * squareSize, y * squareSize, squareSize);
     }
   }
+
+  
+
+  
 }
 
 function getCurrentY() {
@@ -79,10 +83,31 @@ function flip(x, y){
   else grid[y][x] = 0;
 }
 
+function green(x,y){
+  
+  fill(0,255,0,120)
+  
+  square(xx*squareSize,yy*squareSize,squareSize)
+}
+
+
 
 function draw() {
   background(220);
   renderGrid();
+
+  let x = getCurrentX();
+  let y = getCurrentY();
+  green(x,y);
+    //sometimes: (depending on position) flip the neighbours
+  if(y > 0) green(x, y-1);  //NORTH 
+  if(x > 0) green(x-1, y);  //WEST
+  if(x < NUM_COLS-1) green(x+1, y); //EAST
+  if(y < NUM_ROWS-1) green(x, y+1);
+
+  stroke(0);
+
+
   let grid00 = grid[0][0];
   let win = 1;
   for (let y = 0; y < NUM_ROWS; y++) {
