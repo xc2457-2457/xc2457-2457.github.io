@@ -74,11 +74,14 @@ function mousePressed(){
 function keyPressed(){
   if(key === " "){//if space pressed
     pause = 120;// set pause = 120
+
     if(pause>0){
       lights.push(new light(width/2,height/2));
       light.display();
     }
     
+
+
   }
 }
 
@@ -172,21 +175,29 @@ class car{
   }
 
   speedup(){
+
     if(this.speed<15){
       this.speed += 1;//speed up
       
     }
     
 
+    this.speed += 0.2;//speed up
+
+
   }
 
   speeddown(){
+
     if (this.speed >1){
       this.speed -=1;//speed up
 
     }
     
     
+
+    this.speed -=0.2;//speed up
+
 
   }
   action(){
