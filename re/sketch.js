@@ -5,7 +5,7 @@
 //0   255
 let grid = []
   
-
+let mode = "crossmode";
 let squareSize = 60;
 const NUM_ROWS = 3; const NUM_COLS = 5;
 
@@ -14,6 +14,17 @@ function setup() {
   createCanvas(NUM_COLS * squareSize, NUM_ROWS * squareSize);
   random11();
   
+}
+
+function keyPressed(){
+  if(key === ' '){
+    if (mode === "crossmode"){
+      mode = "square"
+    }else{
+      mode = "crossmode"
+    }
+    
+  }
 }
 
 function random11(){
@@ -82,16 +93,30 @@ function mousePressed() {
 
   }
   else{
-    flip(x,y);
+    if(mode === "crossmode"){
+      flip(x,y);
     //sometimes: (depending on position) flip the neighbours
-    if(y > 0) flip(x, y-1);  //NORTH 
-    if(x > 0) flip(x-1, y);  //WEST
-    if(x < NUM_COLS-1) flip(x+1, y); //EAST
-    if(y < NUM_ROWS-1) flip(x, y+1); //SOUTH
-  
+      if(y > 0) flip(x, y-1);  //NORTH 
+      if(x > 0) flip(x-1, y);  //WEST
+      if(x < NUM_COLS-1) flip(x+1, y); //EAST
+      if(y < NUM_ROWS-1) flip(x, y+1); //SOUTH
 
-  }
+
+    }
+    else if (mode === "square") {
+      
+      if (x >= NUM_COLS - 1) x = NUM_COLS - 2;
+      if (y >= NUM_ROWS - 1) y = NUM_ROWS - 2;
+      x = max(0, x);
+      y = max(0, y);
+    
+      flip(x, y);
+      flip(x + 1, y);
+      flip(x, y + 1);
+      flip(x + 1, y + 1);
+    }
   
+ }
 }
 
 function flip(x, y){
