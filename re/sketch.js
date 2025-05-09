@@ -57,11 +57,30 @@ function renderGrid() {
 
   noStroke();
   fill(0,255,0,50);
-  square(greenx*squareSize,greeny*squareSize,squareSize);
+  if (mode === "crossmode"){
+    square(greenx*squareSize,greeny*squareSize,squareSize);
   if (greeny > 0) square(greenx * squareSize, (greeny - 1) * squareSize, squareSize);
   if (greeny < NUM_ROWS - 1) square(greenx * squareSize, (greeny + 1) * squareSize, squareSize);
   if (greenx > 0) square((greenx - 1) * squareSize, greeny * squareSize, squareSize);
   if (greenx < NUM_COLS - 1) square((greenx + 1) * squareSize, greeny * squareSize, squareSize);
+
+  }
+  else if(mode ===" square"){
+    if (greenx >= NUM_COLS - 1) greenx = NUM_COLS - 2;
+    if (greeny >= NUM_ROWS - 1) greeny = NUM_ROWS - 2;
+    greenx = max(0, greenx);
+    greeny = max(0, greeny);
+
+    square(greenx * squareSize, greeny * squareSize,squareSize);
+    square((greenx + 1)*squareSize, greeny*squareSize,squareSize);
+    square(greenx*squareSize, (greeny + 1)*squareSize,squareSize);
+    square((greenx + 1)*squareSize, (greeny + 1)*squareSize,squareSize);
+
+    
+
+
+  }
+  
 
   
 
